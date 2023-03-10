@@ -1,0 +1,11 @@
+*
+{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+.fullscreen-button {
+    margin:50px;
+    z-index: 1
+}
