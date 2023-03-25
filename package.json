@@ -5,13 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "start": "node index.js"
   },
   "devDependencies": {
-    "vite": "^4.0.4"
+    "vite": "^4.0.4",
+    "lil-gui": "^0.17.0"
   },
   "dependencies": {
-    "lil-gui": "^0.17.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "three": "^0.148.0"
   }
 }

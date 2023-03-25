@@ -2,11 +2,6 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
 
-/**
- * Base
- */
-// Debug
-const gui = new dat.GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -175,8 +170,8 @@ ghost2.shadow.camera.far = 7
  
  const ghost3 = new THREE.PointLight('#ffff00', 2, 3)
  ghost3.shadow.mapSize.width = 256
-ghost3.shadow.mapSize.height = 256
-ghost3.shadow.camera.far = 7
+ ghost3.shadow.mapSize.height = 256
+ ghost3.shadow.camera.far = 7
  scene.add(ghost3)
 
 
@@ -185,16 +180,12 @@ ghost3.shadow.camera.far = 7
  */
 // Ambient light
 const ambientLight = new THREE.AmbientLight('#b9d5ff', 0.12)
-gui.add(ambientLight, 'intensity').min(0).max(1).step(0.001)
 scene.add(ambientLight)
 
 // Directional light
 const moonLight = new THREE.DirectionalLight('#b9d5ff', 0.12)
 moonLight.position.set(4, 5, - 2)
-gui.add(moonLight, 'intensity').min(0).max(1).step(0.001)
-gui.add(moonLight.position, 'x').min(- 5).max(5).step(0.001)
-gui.add(moonLight.position, 'y').min(- 5).max(5).step(0.001)
-gui.add(moonLight.position, 'z').min(- 5).max(5).step(0.001)
+
 moonLight.shadow.mapSize.width = 256
 moonLight.shadow.mapSize.height = 256
 moonLight.shadow.camera.far = 15
@@ -279,6 +270,19 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  * Animate
  */
 const clock = new THREE.Clock()
+
+/**
+ * Base
+ */
+// Debug
+if(process.env.NODE_ENV == "development") {
+    const gui = new dat.GUI()
+    gui.add(ambientLight, 'intensity').min(0).max(1).step(0.001)
+    gui.add(moonLight, 'intensity').min(0).max(1).step(0.001)
+    gui.add(moonLight.position, 'x').min(- 5).max(5).step(0.001)
+    gui.add(moonLight.position, 'y').min(- 5).max(5).step(0.001)
+    gui.add(moonLight.position, 'z').min(- 5).max(5).step(0.001)
+}
 
 const tick = () =>
 {
